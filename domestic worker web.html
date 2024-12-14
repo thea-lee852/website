@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domestic Helpers Rights</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .bg-customBlue {
+            background-color: rgb(29, 73, 146) !important;
+        }
+        .text-customBlue {
+            color: rgb(29, 73, 146) !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+<!-- Header -->
+<header class="bg-white shadow-md fixed w-full z-50">
+    <div class="container mx-auto px-6 py-2 flex justify-between items-center">
+        <div class="flex items-center space-x-4">
+            <img src="./logo.webp" alt="Logo" class="h-16 w-16">
+            <h1 class="text-2xl font-bold text-customBlue">DomestiCare Connect</h1>
+        </div>
+        <nav class="space-x-6 flex items-center">
+            <a href="#about" class="text-gray-700 hover:text-customBlue">About</a>
+            <a href="#legal-advice" class="text-gray-700 hover:text-customBlue">Legal Advice</a>
+            <a href="#chatbot" class="text-gray-700 hover:text-customBlue">Chat</a>
+            <a href="#contact" class="text-gray-700 hover:text-customBlue">Contact</a>
+            <!-- Language Switcher Dropdown -->
+            <select id="languageSwitcher" class="bg-gray-200 rounded px-2 py-1">
+                <option value="en">English</option>
+                <option value="tl">Tagalog</option>
+                <option value="id">Bahasa Indonesia</option>
+                <option value="zh">Chinese</option>
+            </select>
+        </nav>
+    </div>
+</header>
+
+
+<!-- Hero Section -->
+<section class="relative bg-customBlue text-white py-32 pt-28" 
+    style="background-image: url('./banner photo.jpg'); background-size: cover; background-position: center; background-blend-mode: overlay; min-height: 600px;">
+    <div class="container mx-auto px-6 text-center mt-24">
+        <h2 id="heroHeading" class="text-4xl font-bold mb-4">Empowering Domestic Helpers</h2>
+        <p id="heroText" class="text-lg mb-6">Learn your rights, get legal advice, and access support services.</p>
+        <a id="learnMore" href="#about" class="bg-white text-customBlue px-6 py-3 rounded-full text-lg font-semibold hover:bg-gray-100">Learn More</a>
+    </div>
+</section>
+
+<!-- Main Content -->
+<main class="container mx-auto px-6 py-12 space-y-16">
+    <!-- About Section -->
+    <section id="about" class="text-center">
+        <h2 id="aboutHeading" class="text-3xl font-semibold text-customBlue mb-4">
+            <span>Your Rights, Your Voice!</span><br>
+            <span class="block mt-4">Accessible Legal Help for Domestic Workers</span>
+        </h2>            
+        <p id="aboutText" class="text-gray-700 max-w-3xl mx-auto">Empowering Workers, Connecting Agencies, Protecting Rights.</p>
+    </section>
+
+    <!-- Legal Advice Section -->
+    <section id="legal-advice" class="bg-white shadow-md rounded-lg p-8 text-center">
+        <h2 id="legalAdviceHeading" class="text-3xl font-semibold text-customBlue mb-4">Submit Your Legal Questions</h2>
+        <form id="adviceForm" class="space-y-6">
+            <input type="text" id="name" placeholder="Your Name" class="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-customBlue" required>
+            <input type="email" id="email" placeholder="Email Address" class="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-customBlue" required>
+            <textarea id="question" placeholder="Your Question" rows="4" class="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-customBlue" required></textarea>
+            <div class="flex items-center space-x-2">
+                <input type="checkbox" id="consent" required>
+                <label for="consent" class="text-gray-700">I consent to the collection and processing of my data.</label>
+            </div>
+            <button type="submit" class="bg-customBlue text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700">Submit</button>
+        </form>
+    </section>
+
+    <!-- Chatbot Section -->
+  <!-- Chatbot Section -->
+<section id="chatbot" class="bg-blue-50 py-12 text-center">
+    <h2 id="chatHeading" class="text-3xl font-semibold text-customBlue mb-4">Chat with Us</h2>
+    <p id="chatText" class="text-gray-700 mb-6">Ask about domestic helper laws in Hong Kong.</p>
+   
+    </div>
+
+<!-- Embed Iframe for Chatbot or Related Service -->
+<div class="mt-8" style="display: flex; justify-content: center; align-items: center;">
+    <iframe src="https://au.bot.joseflegal.com/Rk9KMveb/test" frameborder="0" 
+            style="overflow:hidden;height:500px;width:50%;min-height:500px;min-width:300px;
+                   border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" 
+            height="100%" width="100%">
+    </iframe>
+</div>
+</section>
+
+    
+</main>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white py-6">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+        <p>&copy; 2024 Domestic Helpers Rights. All rights reserved.</p>
+        <div class="space-x-4">
+            <a href="#" class="hover:text-gray-400">Privacy Policy</a>
+            <a href="#" class="hover:text-gray-400">Terms</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Fetch translations from the JSON file
+    async function fetchTranslations() {
+        const response = await fetch('./translations.json'); // Ensure this path is correct
+        const translations = await response.json();
+
+        // Add an event listener to update language
+        document.getElementById('languageSwitcher').addEventListener('change', function () {
+            const selectedLang = this.value;
+            updateLanguage(translations, selectedLang);
+        });
+
+        // Set default language on load
+        updateLanguage(translations, 'en'); // Default to English
+    }
+
+    function updateLanguage(translations, lang) {
+        if (lang === 'en') {
+            resetToDefault(); // Use default text for English
+        } else {
+            document.getElementById('heroHeading').textContent = translations[lang]?.heroHeading || "Empowering Domestic Helpers";
+            document.getElementById('heroText').textContent = translations[lang]?.heroText || "Learn your rights, get legal advice, and access support services.";
+            document.getElementById('learnMore').textContent = translations[lang]?.learnMore || "Learn More";
+            document.getElementById('aboutHeading').textContent = translations[lang]?.aboutHeading || "Your Rights, Your Voice!";
+            document.getElementById('aboutText').textContent = translations[lang]?.aboutText || "Empowering Workers, Connecting Agencies, Protecting Rights.";
+            document.getElementById('legalAdviceHeading').textContent = translations[lang]?.legalAdviceHeading || "Submit Your Legal Questions";
+            document.getElementById('chatHeading').textContent = translations[lang]?.chatHeading || "Chat with Us";
+            document.getElementById('chatText').textContent = translations[lang]?.chatText || "Ask about domestic helper laws in Hong Kong.";
+        }
+    }
+
+    function resetToDefault() {
+        document.getElementById('heroHeading').textContent = "Empowering Domestic Helpers";
+        document.getElementById('heroText').textContent = "Learn your rights, get legal advice, and access support services.";
+        document.getElementById('learnMore').textContent = "Learn More";
+        document.getElementById('aboutHeading').textContent = "Your Rights, Your Voice!";
+        document.getElementById('aboutText').textContent = "Empowering Workers, Connecting Agencies, Protecting Rights.";
+        document.getElementById('legalAdviceHeading').textContent = "Submit Your Legal Questions";
+        document.getElementById('chatHeading').textContent = "Chat with Us";
+        document.getElementById('chatText').textContent = "Ask about domestic helper laws in Hong Kong.";
+    }
+
+    // Call fetchTranslations on page load
+    fetchTranslations();
+
+    // Form submission logic
+    document.getElementById('adviceForm').addEventListener('submit', async function (event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const question = document.getElementById('question').value.trim();
+        const consent = document.getElementById('consent');
+
+        if (!name || !email || !question || !consent.checked) {
+            alert('Please fill out all fields and agree to the terms.');
+            return; // Stop the submission if validation fails
+        }
+
+        try {
+            // Send form data to the backend
+            const response = await fetch('http://localhost:5001/submit-form', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, email, question }),
+            });
+
+            if (response.ok) {
+                alert('Form submitted successfully!');
+                document.getElementById('adviceForm').reset(); // Clear the form
+            } else {
+                alert('Error submitting the form. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again later.');
+        }
+    });
+
+    // Chatbot logic
+    document.getElementById('sendMessage').addEventListener('click', async () => {
+        const userInput = document.getElementById('userInput');
+        const message = userInput.value.trim();
+
+        if (!message) return;
+
+        // Display user message
+        const chatContainer = document.getElementById('chatContainer');
+        const userMessage = document.createElement('div');
+        userMessage.className = 'text-right mb-2';
+        userMessage.textContent = `You: ${message}`;
+        chatContainer.appendChild(userMessage);
+
+        // Clear input field
+        userInput.value = '';
+
+        try {
+            // Send message to backend
+            const response = await fetch('http://localhost:5001/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+
+                // Display bot response
+                const botMessage = document.createElement('div');
+                botMessage.className = 'text-left mb-2';
+                botMessage.textContent = `Bot: ${data.reply}`;
+                chatContainer.appendChild(botMessage);
+
+                // Scroll to the bottom
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            } else {
+                console.error('Error in chatbot response.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
+</script>
+
+</body>
+</html>
